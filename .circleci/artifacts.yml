@@ -1,0 +1,15 @@
+job_environments:
+  common_environment: &common_environment
+    APP_HOSTPATH: test-gpap
+    CONTAINER_PREFIX: planet4-test-gpap
+    WP_DB_NAME_PREFIX: planet4-test-gpap_wordpress
+  develop_environment: &develop_environment
+    APP_ENVIRONMENT: development
+    APP_HOSTNAME: www-dev.greenpeace.org
+    CLOUDSQL_INSTANCE: p4-develop-k8s
+    GOOGLE_PROJECT_ID: planet-4-151612
+    GCLOUD_CLUSTER: p4-development
+    HELM_NAMESPACE: test-gpap
+    HELM_RELEASE: planet4-test-gpap
+    WP_DB_NAME: planet4-test-gpap_wordpress_develop
+    WP_STATELESS_BUCKET: planet4-test-gpap-stateless-develop

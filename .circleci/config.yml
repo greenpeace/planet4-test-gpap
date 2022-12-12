@@ -1,4 +1,24 @@
 ---
+version: 2.1
+
+parameters:
+  rollback:
+    type: boolean
+    default: false
+
+docker_auth: &docker_auth
+  username: $DOCKERHUB_USERNAME
+  password: $DOCKERHUB_PASSWORD
+
+defaults: &defaults
+  docker:
+    - image: greenpeaceinternational/p4-builder:latest
+      auth:
+        <<: *docker_auth
+
+orbs:
+  slack: circleci/slack@3.4.2
+
 job_environments:
   common_environment: &common_environment
     APP_HOSTPATH: test-gpap
@@ -10,7 +30,7 @@ job_environments:
     CLOUDSQL_INSTANCE: p4-develop-k8s
     GOOGLE_PROJECT_ID: planet-4-151612
     GCLOUD_CLUSTER: p4-development
-    HELM_NAMESPACE: develop
+    HELM_NAMESPACE: test-gpap
     HELM_RELEASE: planet4-test-gpap
     WP_DB_NAME: planet4-test-gpap_wordpress_develop
     WP_STATELESS_BUCKET: planet4-test-gpap-stateless-develop
